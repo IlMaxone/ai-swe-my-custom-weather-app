@@ -57,15 +57,13 @@ L'obiettivo del progetto è offrire un esempio semplice ma pratico di utilizzo d
 
 ```bash
 git clone <repository-url>
-cd <nome-cartella-progetto>
 ```
 
 ### 2. Installa le dipendenze
 
-Dalla cartella `chatgpt` del progetto installa le dipendenze necessarie:
+Dalla cartella `main` del progetto installa le dipendenze necessarie:
 
 ```bash
-cd chatgpt
 npm install
 npm install express dotenv
 ```
@@ -75,7 +73,7 @@ npm install express dotenv
 
 ### 2.1 Configura il file `.env`
 
-Crea un file `.env` nella cartella `chatgpt` del progetto con un contenuto simile a questo:
+Crea un file `.env` nella cartella `main` del progetto con un contenuto simile a questo:
 
 ```env
 ENABLE_WEATHER_API=true
@@ -96,7 +94,7 @@ Comportamento previsto:
 
 ### 2.2 Controlli utili da terminale
 
-Dalla cartella `chatgpt` puoi usare questi controlli rapidi:
+Dalla cartella `main` puoi usare questi controlli rapidi:
 
 Verifica che i file principali esistano:
 
@@ -219,7 +217,6 @@ PORT=3000
 Per una diagnosi rapida, esegui in ordine:
 
 ```bash
-cd chatgpt
 node -c weather.js
 node -c app.js
 node -c server.js

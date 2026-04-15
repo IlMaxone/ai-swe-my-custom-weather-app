@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Meteo</title>
+  <link rel="stylesheet" href="./weather-ui.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Weather Dashboard</p>
+        <h1>App Meteo</h1>
+        <p class="subheading">
+          UI web che usa il backend Node già implementato per meteo attuale, confronto multi-città e previsione a 5 giorni.
+        </p>
+      </div>
+      <div class="header-badge">Cache backend: 1 ora</div>
+    </header>
+
+    <main class="layout">
+      <section class="panel search-panel">
+        <form id="weather-form" class="search-form">
+          <label class="field">
+            <span>Città</span>
+            <input
+              id="city-input"
+              type="text"
+              placeholder="Es. Milano oppure Milano, Roma, Torino"
+              autocomplete="off"
+            />
+          </label>
+
+          <label class="field">
+            <span>Vista</span>
+            <select id="mode-select">
+              <option value="current">Meteo attuale</option>
+              <option value="forecast">Previsione a 5 giorni</option>
+            </select>
+          </label>
+
+          <div class="actions">
+            <button type="submit" class="primary-btn">Cerca</button>
+            <button type="button" id="clear-btn" class="ghost-btn">Pulisci</button>
+          </div>
+        </form>
+
+        <div class="helper-text">
+          Se inserisci più città separate da virgola, la UI mostra il confronto del meteo attuale affiancato.
+          La previsione a 5 giorni resta disponibile per una sola città alla volta.
+        </div>
+      </section>
+
+      <section class="panel status-panel">
+        <div class="status-row">
+          <div>
+            <p class="status-label">Stato</p>
+            <p id="status-text" class="status-value">In attesa di una ricerca</p>
+          </div>
+          <div>
+            <p class="status-label">Ultima sorgente</p>
+            <p id="source-text" class="status-value">-</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="error-box" class="panel error-panel hidden"></section>
+
+      <section id="single-current-section" class="hidden">
+        <article class="hero-card">
+          <div class="hero-main">
+            <div>
+              <p id="single-updated" class="meta-line">Ultimo aggiornamento: -</p>
+              <h2 id="single-city" class="hero-city">-</h2>
+              <p id="single-country" class="hero-country">-</p>
+            </div>
+            <div class="hero-temperature">
+              <span id="single-temperature">--</span>
+              <small>°C</small>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <article class="metric-card">
+              <p class="metric-label">Vento</p>
+              <p id="single-wind" class="metric-value">-</p>
+            </article>
+            <article class="metric-card">
+              <p class="metric-label">Umidità</p>
+              <p id="single-humidity" class="metric-value">-</p>
+            </article>
+            <article class="metric-card">
+              <p class="metric-label">Precipitazioni</p>
+              <p id="single-precipitation" class="metric-value">-</p>
+            </article>
+            <article class="metric-card">
+              <p class="metric-label">AQI europeo</p>
+              <p id="single-pollution" class="metric-value">-</p>
+            </article>
+            <article class="metric-card">
+              <p class="metric-label">PM10</p>
+              <p id="single-pm10" class="metric-value">-</p>
+            </article>
+            <article class="metric-card">
+              <p class="metric-label">PM2.5</p>
+              <p id="single-pm25" class="metric-value">-</p>
+            </article>
+            <article class="metric-card">
+              <p class="metric-label">NO₂</p>
+              <p id="single-no2" class="metric-value">-</p>
+            </article>
+            <article class="metric-card">
+              <p class="metric-label">O₃</p>
+              <p id="single-o3" class="metric-value">-</p>
+            </article>
+          </div>
+        </article>
+      </section>
+
+      <section id="forecast-section" class="panel hidden">
+        <div class="section-heading">
+          <div>
+            <p id="forecast-updated" class="meta-line">Ultimo aggiornamento: -</p>
+            <h2 id="forecast-city">Previsione a 5 giorni</h2>
+          </div>
+          <div id="forecast-source" class="mini-badge">-</div>
+        </div>
+        <div id="forecast-cards" class="forecast-grid"></div>
+      </section>
+
+      <section id="multi-city-section" class="panel hidden">
+        <div class="section-heading">
+          <div>
+            <p class="meta-line">Confronto meteo attuale</p>
+            <h2>Multi-città</h2>
+          </div>
+        </div>
+        <div id="multi-city-grid" class="cities-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./weather-ui.js"></script>
+</body>
+</html>
